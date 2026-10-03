@@ -1,0 +1,15 @@
+{
+  "name": "gimnasio-pro",
+  "version": "1.1.0",
+  "description": "Sistema Multiplataforma para Gimnasio y Musculación",
+  "type": "module",
+  "scripts": {
+    "build": "npx esbuild src/js/app.js --bundle --outfile=src/js/app.bundle.js --format=iife",
+    "watch": "npx esbuild src/js/app.js --bundle --outfile=src/js/app.bundle.js --format=iife --watch",
+    "test": "node tests/verify.test.mjs",
+    "start": "python -m http.server 8085"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

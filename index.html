@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gimnasio Pro - Sistema Multiplataforma de Entrenamiento y PRs</title>
+  
+  <meta name="description" content="Gimnasio Pro: Aplicación 100% offline-first para atletas y entrenadores. Gestión de Récords Personales (PRs), cálculo de cargas, desglose biomecánico y licenciamiento seguro." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Gimnasio Pro" />
+  
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Estilos Centrales -->
+  <link rel="stylesheet" href="src/css/styles.css" />
+</head>
+<body>
+  <!-- Pantalla de Carga Inicial No Bloqueante -->
+  <div id="app-splash-screen" class="splash-screen" aria-live="polite">
+    <div class="splash-logo">🏋️‍♂️</div>
+    <h1 class="splash-title">Gimnasio Pro</h1>
+    <div class="splash-loader"></div>
+  </div>
+
+  <div id="app-container">
+    <!-- ENCABEZADO FIJO (STICKY / PINNED) -->
+    <header class="pinned-header" role="banner">
+      <div class="header-container">
+        <div class="brand-wrapper">
+          <span class="brand-icon" aria-hidden="true">🏋️‍♂️</span>
+          <h1 class="brand-title">Gimnasio Pro</h1>
+          <div class="header-badges">
+            <span class="header-chip" id="header-athlete-chip" title="Atleta Activo">
+              <span class="chip-icon">👤</span> <span class="chip-text">Cargando...</span>
+            </span>
+            <span class="header-chip" id="header-center-chip" title="Centro de Entrenamiento">
+              <span class="chip-icon">📍</span> <span class="chip-text">Sede</span>
+            </span>
+            <span class="header-chip unit-chip" id="header-unit-chip" title="Unidad Activa">KG</span>
+          </div>
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN DE ACCESO RÁPIDO: Atleta, Reportes, PRs, Licencia y Parámetros -->
+        <nav class="quick-nav" aria-label="Navegación principal">
+          <button type="button" class="nav-btn active" data-tab="athlete" aria-selected="true">
+            <span class="nav-icon" aria-hidden="true">👤</span>
+            <span class="nav-label">Atleta</span>
+          </button>
+          <button type="button" class="nav-btn" data-tab="reports" aria-selected="false">
+            <span class="nav-icon" aria-hidden="true">📊</span>
+            <span class="nav-label">Reportes</span>
+          </button>
+          <button type="button" class="nav-btn" data-tab="prs" aria-selected="false">
+            <span class="nav-icon" aria-hidden="true">🏆</span>
+            <span class="nav-label">PRs</span>
+          </button>
+          <button type="button" class="nav-btn" data-tab="license" aria-selected="false">
+            <span class="nav-icon" aria-hidden="true">🔐</span>
+            <span class="nav-label">Licencia</span>
+          </button>
+          <button type="button" class="nav-btn" data-tab="settings" aria-selected="false">
+            <span class="nav-icon" aria-hidden="true">⚙️</span>
+            <span class="nav-label">Parámetros</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- CUERPO PRINCIPAL DE VISTAS (APP SHELL) -->
+    <main id="main-app-shell" role="main">
+      <!-- VISTA 1: ATLETA Y ENTRENAMIENTO (PASO 1 Y PASO 2) -->
+      <section id="view-athlete" class="view-panel" aria-label="Entorno de Entrenamiento"></section>
+
+      <!-- VISTA 2: REPORTES Y PROGRESIÓN -->
+      <section id="view-reports" class="view-panel hidden" aria-label="Reportes y Estadísticas"></section>
+
+      <!-- VISTA 3: RÉCORDS PERSONALES (PRS) -->
+      <section id="view-prs" class="view-panel hidden" aria-label="Gestor de PRs"></section>
+
+      <!-- VISTA 4: SEGURIDAD Y LICENCIA OFFLINE -->
+      <section id="view-license" class="view-panel hidden" aria-label="Licencia y Seguridad"></section>
+
+      <!-- VISTA 5: PARÁMETROS GLOBALES Y CENTROS -->
+      <section id="view-settings" class="view-panel hidden" aria-label="Parámetros del Sistema"></section>
+    </main>
+
+    <!-- FOOTER ESTÁTICO ANCLADO A LA BASE CON TEXTO EXACTO -->
+    <footer class="pinned-footer" role="contentinfo">
+      <div class="footer-content">
+        Análisis/Diseño de Andres Aguiar V 2026.10 Santiago deChile Octubre 2026 - Contacto <a href="tel:+56933395447" class="footer-link">+56933395447</a> - Whatsapp <a href="https://wa.me/56933395447" target="_blank" rel="noopener noreferrer" class="footer-link">+56933395447</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL GENERAL ACCESIBLE (OVERLAY ANTI-CONGELAMIENTO) -->
+  <div id="app-modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- OVERLAY SUPERPUESTO DE BLOQUEO POR TRIAL EXPIRADO (Z-INDEX 99999) -->
+  <div id="trial-expired-overlay" class="blocking-modal hidden" role="alertdialog" aria-modal="true" aria-labelledby="trial-block-heading"></div>
+
+  <!-- CONTENEDOR FLOTANTE DE NOTIFICACIONES TOAST -->
+  <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- ARQUITECTURA MODULAR Y COMPATIBILIDAD NATIVA TOTAL (FILE:/// Y HTTP/HTTPS) -->
+  <script defer src="src/js/app.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+Prompt Maestro Optimizado para Desarrollo Multiplataforma (Agnóstico)
+
+Actúa como un Arquitecto de Software y Desarrollador Senior. Tu objetivo es construir un sistema integral para la aplicación "Gimnasio Pro". El código debe estar estructurado y optimizado de forma modular para ser desplegado en cualquier plataforma (Web, Móvil nativo o Escritorio), garantizando un arranque asíncrono fluido y una carga defensiva del ciclo de vida de la vista para evitar bloqueos en el hilo principal de la interfaz (UI thread).
+
+1. Interfaz y Experiencia de Usuario (UI/UX)
+
+Implementa un tema oscuro estricto (Fondo principal: #0f172a, Tarjetas/Contenedores: #1e293b) con acentos en cian (#06b6d4), azul, oro y rojo.
+
+Crea un encabezado fijo (sticky/pinned) con el título "Gimnasio Pro" y una barra de navegación de acceso rápido: Atleta, Reportes, PRs, Licencia y Parámetros.
+
+Añade un footer estático anclado a la base de la pantalla con el texto exacto: "Análisis/Diseño de Andres Aguiar V 1.1 Santiago de Chile Agosto 2026 - Contacto +56933395447 - Whatsapp +56933395447".
+
+2. Módulo de Seguridad y Licenciamiento Offline
+
+Periodo Trial: Registra la fecha de instalación en el almacenamiento local persistente del dispositivo. Si el tiempo de uso supera los 3 días (72 horas) sin una licencia válida, despliega una vista superpuesta en la capa más alta de la UI (modal/overlay) que bloquee toda la app mostrando "Período de Prueba Expirado" y el número de contacto +56933395447.
+
+Activación Criptográfica: Genera un identificador único de dispositivo ("Device ID") en el primer arranque. Muestra un código de solicitud con el formato "REQ|DeviceID|correo". El sistema validará la activación procesando un token Base64, verificando de forma autónoma (offline) la firma SHA-256 contra la sal criptográfica "Halterofilia-SuperSecret-Salt-2026" y comprobando que la fecha actual no supere la caducidad dictada por el token.
+
+3. Configuración de Sesión (Paso 1)
+
+Centros de Entrenamiento: Desarrolla un gestor local para seleccionar o agregar nuevos centros de Entrenamiento con nombre y descripción para segmentar bases de datos. Preconfigura opciones por defecto: "Box Gym Central", "Garage Gym Pro" y "Club Gimnasio".
+
+Parámetros Base: Incorpora un selector de estado global para la unidad objetivo (KG o LBS) aplicando el factor de conversión matemático exacto de 1 kg = 2.20462 lbs. Añade un selector para el tipo de barra olímpica: Hombre (20 kg / 45 lb) o Mujer (15 kg / 35 lb).
+
+4. Entorno de Entrenamiento (Paso 2) y Motor Híbrido
+
+1.- Selector Rotativo de Movimientos: Implementa un componente interactivo tipo Carrusel  para navegar entre movimientos de Gimnasio (
+2.-Prensa de Piernas	Cuádriceps, Isquiotibiales, Glúteos	🦵🏋️‍♂️💥
+3.-Jalón al Pecho (Polea Alta)	Dorsal Ancho, Bíceps, Hombros	🦍💪⬇️
+4.-Press de Pecho en Máquina	Pectorales, Tríceps, Deltoides Anterior	🦸‍♂️🛡️️💪
+5.-Peck Deck (Máquina Mariposa)	Pectorales (zona central y externa)	🦋💪
+6.-Extensión de Piernas	Cuádriceps	🦵⚡
+7.-Curl de Piernas	Isquiotibiales	🦵🪝
+8.-Remo Sentado en Máquina	Espalda Media (Romboides), Dorsales	🛶💪🔙
+9.-Elevación de Talones	Pantorrillas (Gemelos y Sóleo)	🩰🦵🔥
+10.-Extensión de Tríceps en Polea	Tríceps	🦾⛓️⬇️
+11.-Curl de Bíceps en Máquina	Bíceps Braquial	💪😎
+12.-Máquina Smith (Sentadillas)	Cuádriceps, Glúteos, Core	🍑🏋️‍♀️🏗️
+13.-Máquina Abductora / Aductora	Glúteo Medio, Aductores (entrepierna)	🤸‍♀️🦵↔️). 
+
+Este control debe enlazarse a la base de datos local y mostrar dinámicamente el Récord Personal (PR) del atleta activo para la técnica en pantalla.
+
+5. Gestión de Perfiles y Reportes
+
+Atletas y PRs: Integra un gestor multi-perfil para crear y alternar atletas. Incluye un módulo independiente para actualizar manualmente el PR de cualquier movimiento, persistiendo esta información estructurada en el dispositivo.
+
